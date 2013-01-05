@@ -1,9 +1,9 @@
 ﻿//============================================================================
 // Name        : CPPEx.cpp
-// Author      : 
+// Author      : MapzChen
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : Exercise C++, Ansi-style
 //============================================================================
 
 #include <iostream>
@@ -92,8 +92,21 @@ long mi(long number,long toCal,int &times){
 	  return s.size() > 4;
   }
   
+  void funcAttack(person &p){
+	  p.attack();
+  }
   
+  template <typename T>
+  void c_out(T &v){
+	  cout << v;
+	  cout << endl;
+  }
 
+  template <typename T>
+  void c_out_n(T v){
+	  cout << v;
+	  cout << endl;
+  }
  int main() {
 	/*---------------遍历器为向量赋值-------------------*/
 //	vector<int> vecInt(10);
@@ -702,19 +715,60 @@ long mi(long number,long toCal,int &times){
 //debug("%d,%d",1,2);
 
 /********************宏的函数模版使用************************/
-/********************类的派生************************/
-person p(string("Mapz"),string("Nanhai"));
-kicker k();
-vector<person> vc(2);
-vc[0] = p;
-vc[1] = k;
-VEC_PROCESS_FUNC(person,vc,_itx,attack);
-/********************类的派生************************/
+/********************类的派生:多态************************/
+/**
+ * 容器不能实现多态
+ */
+//person p(string("Mapz"),string("Nanhai"));
+//kicker k;
+//funcAttack(p);
+//funcAttack(k);
+//vector<person> vc;
+//vector<person*> vcp;
+//vcp.push_back(&p);
+//vcp.push_back(&k);
+//person *pp = &k;
+//pp->attack();
+////vc[0] = p;	
+////vc[1] = k;
+//vc.push_back(p);
+//vc.push_back(k);
+//cout << vc.size() << endl;
+//cout << pp->name << endl;
+//VEC_PROCESS_FUNC(person,vc,itxv,attack);
+/********************类的派生：多态************************/
+/********************类的派生：句柄************************/
+/*
+ * 如上所说，无法由容器获得多态，由句柄来实现
+ * 句柄(handle)换句话说基本上就是指向基类的智能指针类
+ * 下面的代码在使用容器的时候内存有露出，晚上再研究一下
+ */
+//vector<person_handle> vph;
+//person_handle php(person(string("Mapz"),string("Nanhai")));
+//person_handle phk(kicker(string("MapzKick"),string("Foshan")));
+////vph.push_back(php);
+////vph.push_back(phk);
+//php->attack();
+//phk->attack();
+////VEC_PROCESS_FUNC_PO(person_handle,vph,itxv,attack);
+////vector<person_handle>::iterator iter = vph.begin();
+////while(iter!=vph.end()){
+////	(*iter)  -> attack();
+////	iter++;
+////}
+/********************类的派生：句柄************************/
+/********************函数模版的使用************************/
+int x = 9;
+string c("xxc");
+c_out(x);
+c_out_n(2);
+c_out(c);
+/********************函数模版的使用************************/
 /*====================end of file==========================*/
 	cout << endl;
 	cout << "end of program,any key to quit" << endl;
 	system("pause");
-
+	return 1;
 }
 
 
